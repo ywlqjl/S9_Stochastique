@@ -25,7 +25,4 @@ public class PStoch {
         frame.setVisible(true);
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
