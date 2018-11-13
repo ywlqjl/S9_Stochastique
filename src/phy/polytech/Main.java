@@ -1,9 +1,11 @@
 package phy.polytech;
 
+import javax.swing.*;
+
 public class Main {
 
     public static void main(String[] args) throws Exception {
-	// write your code here
+        // write your code here
         Input input = new Input();
         input.getInput();
         Calculation calculation;
