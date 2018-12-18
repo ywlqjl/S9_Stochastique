@@ -16,6 +16,12 @@ public class PStoch {
     private JButton calculer1;
     private JTextArea output1;
     private JButton calculer2;
+    private JTextField tempsAtt1;
+    private JTextField nbClient1;
+    private JTextField tempsAtt2;
+    private JTextField nbClient2;
+
+    // 输入等待时间超过t（求超过t的概率）， 人数i（系统内i个人的概率），
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("PStoch");
