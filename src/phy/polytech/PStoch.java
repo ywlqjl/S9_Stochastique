@@ -1,6 +1,8 @@
 package phy.polytech;
 
 import javax.swing.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class PStoch {
     private JTabbedPane tabbedPane1;
@@ -20,8 +22,49 @@ public class PStoch {
     private JTextField nbClient1;
     private JTextField tempsAtt2;
     private JTextField nbClient2;
+    private Calculation calculation;
+    private Input input1; // MMS
+    private Input input2;
 
     // 输入等待时间超过t（求超过t的概率）， 人数i（系统内i个人的概率），
+
+    public PStoch() {
+        input1 = new Input();
+        input2 = new Input();
+        calculer1.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                input1.setLambda(Float.valueOf(lambda1.getText()));
+                input1.setMu(Float.valueOf(mu1.getText()));
+                input1.setNbServer(Integer.valueOf(s1.getText()));
+                calculation = new CalculateMMS(input1);
+                calculation.calculate();
+            }
+        });
+        calculer2.addMouseListener(new MouseAdapter() {
+            /**
+             * {@inheritDoc}
+             *
+             * @param e
+             */
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                super.mouseClicked(e);
+                input2.setLambda(Float.valueOf(lambda2.getText()));
+                input2.setMu(Float.valueOf(mu2.getText()));
+                input2.setNbServer(1);
+                input2.setNbMaxClient(Integer.valueOf(k.getText()));
+                calculation = new CalculateMMOneK(input2);
+                calculation.calculate();
+            }
+        });
+    }
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("PStoch");
