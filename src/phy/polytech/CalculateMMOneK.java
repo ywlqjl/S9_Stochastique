@@ -21,7 +21,7 @@ public class CalculateMMOneK implements Calculation {
 
         float L = this.calculateL();
 
-        float Lq = this.calcluateLq();
+        float Lq = this.calculateLq();
 
         System.out.format("M | M | %d | %d, q%d = %f, L = %f, Lq = %f \n", input.getNbServer(), input.getNbMaxClient(), state, qi, L, Lq);
         return outPut;
@@ -49,7 +49,31 @@ public class CalculateMMOneK implements Calculation {
         return L;
     }
 
-    private float calcluateLq() {
+    private float calculateLq() {
         return this.calculateL() - (1 - this.calculateQi(0));
     }
+
+    private float calculateW(){
+        return calculateL()/input.getLambda();
+    }
+
+    private float calculateWq(){
+        return calculateLq()/input.getLambda();
+    }
+
+    //int clientMaxAccepted: s'il y a plus de clients que ce nombre dans le système, les clients suivants seront refusés.
+    private float calculateRefuse(int clientMaxAccepted){
+
+        float probRefuse = 0;
+        float probAccept = 0;
+
+        for(int i = 0; i < clientMaxAccepted; i++){
+            probAccept += calculateQi(i);
+        }
+
+        probRefuse = 1 - probAccept;
+
+        return probRefuse;
+    }
+
 }
