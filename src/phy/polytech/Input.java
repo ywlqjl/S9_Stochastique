@@ -15,6 +15,10 @@ public class Input {
 
     private float rho;
 
+    private float t;
+
+    private int j;
+
     public void getInput() {
 
         System.out.println("Please enter lambda, mu, s and k, separate with space:");
@@ -72,5 +76,21 @@ public class Input {
 
     public void setMu(float mu) {
         this.mu = mu;
+    }
+
+    public float getT() {
+        return t;
+    }
+
+    public void setT(float t) {
+        this.t = t;
+    }
+
+    public int getJ() {
+        return j;
+    }
+
+    public void setJ(int j) {
+        this.j = j;
     }
 }

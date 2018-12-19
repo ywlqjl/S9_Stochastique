@@ -7,6 +7,15 @@ public class OutPut {
     private float L;
     private float Pt;
     private float q0;
+    private float qj;
+
+    public float getQj() {
+        return qj;
+    }
+
+    public void setQj(float qj) {
+        this.qj = qj;
+    }
 
     public float getLq() {
         return Lq;

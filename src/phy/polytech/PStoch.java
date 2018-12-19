@@ -31,6 +31,7 @@ public class PStoch {
     public PStoch() {
         input1 = new Input();
         input2 = new Input();
+
         calculer1.addMouseListener(new MouseAdapter() {
             /**
              * {@inheritDoc}
@@ -38,30 +39,22 @@ public class PStoch {
              * @param e
              */
             @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                output1.setText(null);
                 input1.setLambda(Float.valueOf(lambda1.getText()));
                 input1.setMu(Float.valueOf(mu1.getText()));
                 input1.setNbServer(Integer.valueOf(s1.getText()));
+                input1.setT(Float.valueOf(tempsAtt1.getText()));
+                input1.setJ(Integer.valueOf(nbClient1.getText()));
+
                 calculation = new CalculateMMS(input1);
-                calculation.calculate();
-            }
-        });
-        calculer2.addMouseListener(new MouseAdapter() {
-            /**
-             * {@inheritDoc}
-             *
-             * @param e
-             */
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                input2.setLambda(Float.valueOf(lambda2.getText()));
-                input2.setMu(Float.valueOf(mu2.getText()));
-                input2.setNbServer(1);
-                input2.setNbMaxClient(Integer.valueOf(k.getText()));
-                calculation = new CalculateMMOneK(input2);
-                calculation.calculate();
+                OutPut outPut = calculation.calculate();
+                String outString = String.format("M | M | %d | %d\n", input1.getNbServer(), input1.getNbMaxClient());
+                outString = outString + String.format("Lq = %f, \nL = %f, \nWq = %f, \nW = %f, \n", outPut.getLq(), outPut.getL(), outPut.getWq(), outPut.getW());
+                outString = outString + String.format("P(T>%f) = %f\n", input1.getT(), outPut.getPt());
+                outString = outString + String.format("q(%d) = %f\n", input1.getJ(), outPut.getQj());
+                output1.setText(outString);
             }
         });
     }
