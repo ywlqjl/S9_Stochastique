@@ -11,13 +11,19 @@ public class CalculateMMS implements Calculation {
     }
 
     @Override
-    public float calculate() {
+    public OutPut calculate() {
         float q0 = this.calculateQ0();
+        OutPut outPut = new OutPut();
+        outPut.setQ0(this.calculateQ0());
+        outPut.setL(this.calculateL());
+        outPut.setLq(this.calculateLq());
+        outPut.setW(this.calculateW());
+        outPut.setWq(this.calculateWq());
 
         System.out.format("M | M | %d | %d, \nq%d = %f \n", input.getNbServer(), input.getNbMaxClient(), 0, q0);
         System.out.format("Lq = %f, \nL = %f, \nWq = %f, \nW = %f, \n", this.calculateLq(), this.calculateL(), this.calculateWq(), this.calculateW());
         System.out.format("P(T>%f) = %f", (float)1/6, this.calculatePSystem( (float)1/6));
-        return 0;
+        return outPut;
     }
 
 

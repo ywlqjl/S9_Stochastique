@@ -11,7 +11,8 @@ public class CalculateMMOneK implements Calculation {
     }
 
     @Override
-    public float calculate() {
+    public OutPut calculate() {
+        OutPut outPut = new OutPut();
         System.out.println("Enter the state of client (i):");
         Scanner scanner = new Scanner(System.in);
         int state = scanner.nextInt();
@@ -23,7 +24,7 @@ public class CalculateMMOneK implements Calculation {
         float Lq = this.calcluateLq();
 
         System.out.format("M | M | %d | %d, q%d = %f, L = %f, Lq = %f \n", input.getNbServer(), input.getNbMaxClient(), state, qi, L, Lq);
-        return 0;
+        return outPut;
     }
 
     private float calculateQi(int state) {
