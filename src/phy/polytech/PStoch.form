@@ -102,7 +102,7 @@
                   <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Temps d'attente"/>
+                  <text value="Temps d'attente (t)"/>
                 </properties>
               </component>
               <component id="eb99d" class="javax.swing.JTextField" binding="tempsAtt1">
@@ -118,7 +118,7 @@
                   <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <text value="Nb Client dans Sys"/>
+                  <text value="Nb Client dans Sys (j)"/>
                 </properties>
               </component>
               <component id="ce2b2" class="javax.swing.JTextField" binding="nbClient1">
