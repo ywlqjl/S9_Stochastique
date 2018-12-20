@@ -36,13 +36,15 @@ public class Input {
     }
 
     public float getRho() {
-        if (this.lambda / (this.mu * this.nbServer)>1){
-            try {
-                throw new Exception("The work Can't be done, cause rho > 1");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+//        if (this.nbMaxClient == 0 && this.lambda / (this.mu * this.nbServer)>1){
+//
+//            try {
+//                throw new Exception("The work Can't be done, cause rho > 1");
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//
+//        }
         return this.lambda / (this.mu * this.nbServer);
     }
 

@@ -13,17 +13,11 @@ public class CalculateMMOneK implements Calculation {
     @Override
     public OutPut calculate() {
         OutPut outPut = new OutPut();
-        System.out.println("Enter the state of client (i):");
-        Scanner scanner = new Scanner(System.in);
-        int state = scanner.nextInt();
-
-        float qi = this.calculateQi(state);
-
-        float L = this.calculateL();
-
-        float Lq = this.calculateLq();
-
-        System.out.format("M | M | %d | %d, q%d = %f, L = %f, Lq = %f \n", input.getNbServer(), input.getNbMaxClient(), state, qi, L, Lq);
+        outPut.setL(this.calculateL());
+        outPut.setLq(this.calculateLq());
+        outPut.setW(this.calculateW());
+        outPut.setWq(this.calculateWq());
+        outPut.setQj(this.calculateQi(this.input.getJ()));
         return outPut;
     }
 
