@@ -6,6 +6,7 @@ public class OutPut {
     private float W;
     private float L;
     private float Pt;
+    private float Pt_wait;
     private float q0;
     private float qj;
 
@@ -55,6 +56,14 @@ public class OutPut {
 
     public void setPt(float pt) {
         Pt = pt;
+    }
+
+    public float getPt_wait() {
+        return Pt_wait;
+    }
+
+    public void setPt_wait(float ptWait) {
+        Pt_wait = ptWait;
     }
 
     public float getQ0() {

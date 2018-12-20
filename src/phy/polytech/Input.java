@@ -17,6 +17,8 @@ public class Input {
 
     private float t;
 
+    private float t_wait;
+
     private int j;
 
     public void getInput() {
@@ -86,6 +88,13 @@ public class Input {
 
     public void setT(float t) {
         this.t = t;
+    }
+    public float getT_wait() {
+        return t_wait;
+    }
+
+    public void setT_wait(float tWait) {
+        this.t_wait = tWait;
     }
 
     public int getJ() {

@@ -21,14 +21,16 @@ public class PStoch {
     private JTextField tempsAtt1;
     private JTextField nbClient1;
     private JTextField nbClient2;
+    private JTextField dureeSysteme;
     private Calculation calculation;
     private Input input1; // MMS
-    private Input input2;
+    private Input input2; // MM1K
 
     public PStoch() {
         input1 = new Input();
         input2 = new Input();
 
+        // M M S
         calculer1.addMouseListener(new MouseAdapter() {
             /**
              * {@inheritDoc}
@@ -42,9 +44,8 @@ public class PStoch {
                 input1.setLambda(Float.valueOf(lambda1.getText()));
                 input1.setMu(Float.valueOf(mu1.getText()));
                 input1.setNbServer(Integer.valueOf(s1.getText()));
-
-
-                input1.setT(Float.valueOf(tempsAtt1.getText().isEmpty() ? "0" : tempsAtt1.getText()));
+                input1.setT(Float.valueOf(dureeSysteme.getText().isEmpty() ? "0" : dureeSysteme.getText()));
+                input1.setT_wait(Float.valueOf(tempsAtt1.getText().isEmpty() ? "0" : tempsAtt1.getText()));
                 input1.setJ(Integer.valueOf(nbClient1.getText().isEmpty() ? "0" : nbClient1.getText()));
 
                 calculation = new CalculateMMS(input1);
@@ -59,11 +60,15 @@ public class PStoch {
                         "Nb moyen de clients dans le système: L = %f, \n" +
                         "La durée moyenne d'attente dans la file: Wq = %f, \n" +
                         "La durée moyenne d'attente dans le système: W = %f, \n", outPut.getLq(), outPut.getL(), outPut.getWq(), outPut.getW());
+
                 outString = outString + String.format("La probabilité que la durée de séjour > %f: P(T>%f) = %f\n", input1.getT(), input1.getT(), outPut.getPt());
+                outString = outString + String.format("La probabilité que le temps d'attente > %f: P(T>%f) = %f\n", input1.getT_wait(), input1.getT_wait(), outPut.getPt_wait());
                 outString = outString + String.format("La probabilité de %d clients dans le système: q(%d) = %f\n", input1.getJ(), input1.getJ(), outPut.getQj());
                 output1.setText(outString);
             }
         });
+
+        // M M 1 K
         calculer2.addMouseListener(new MouseAdapter() {
             /**
              * {@inheritDoc}

@@ -20,6 +20,7 @@ public class CalculateMMS implements Calculation {
         outPut.setW(this.calculateW());
         outPut.setWq(this.calculateWq());
         outPut.setPt(this.calculatePSystem(input.getT()));
+        outPut.setPt_wait(this.calculatePWait(input.getT_wait()));
         outPut.setQj(this.calculateQj(input.getJ()));
 
         System.out.format("M | M | %d | %d, \nq%d = %f \n", input.getNbServer(), input.getNbMaxClient(), 0, q0);
@@ -97,14 +98,15 @@ public class CalculateMMS implements Calculation {
      * @return
      */
     private float calculatePSystem(float t) {
-        float ps;
-        float temp;
-        temp = (float) (1 - Math.pow(Math.E, (-1) * (input.getMu() * t) * (input.getNbServer() - 1 - input.getRho() * input.getNbServer())) /
-                (input.getNbServer() - 1 - input.getRho() * input.getNbServer()));
-        ps = (float) (Math.pow(Math.E, (-1) * (input.getMu() * t)) * (1 + (this.calculateQ0() * Math.pow(input.getRho() * input.getRho(), input.getNbServer())) * temp /
-                (this.factorial(input.getNbServer()) * (1 - input.getRho()))));
+        float ps, temp;
+
+        temp = (float) (1- Math.pow(Math.E, (-1)*(input.getMu()*t*(input.getNbServer()-1-input.getRho()*input.getNbServer()))))/(input.getNbServer()-1-input.getRho()*input.getNbServer());
+
+        ps = (float) (Math.pow(Math.E, (-1) * (input.getMu() * t)) * (1 + ((this.calculateQ0() * Math.pow((input.getRho() * input.getNbServer()), input.getNbServer())) * temp /
+                (this.factorial(input.getNbServer()) * (1 - input.getRho())))));
         return ps;
     }
+
 
     private float calculatePWait(float t) {
         float p0;
